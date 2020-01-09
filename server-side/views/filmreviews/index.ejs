@@ -1,0 +1,53 @@
+<%- include('../partials/header');  %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div class="container">
+	<header class="jumbotron">
+		<div>
+			<div>
+			  <img src="https://static.thenounproject.com/png/23947-200.png" width="70" height="70" class="d-inline-block align-top" alt="">
+			  <span style="font-size: 50px; margin-left: 15px">Film Reviews Station</span>
+			  </div>
+			<p> View our lasted film reviews from all over the world and get movie recommondations of your taste</p>
+		    <p>
+			    <a class="btn btn-primary btn-lg" href="/filmreviews/new">Add New Film Review</a>
+		    </p>
+		</div>
+	</header>
+	
+	<div class="container">
+	<div class="row text-center" style="display: flex; flex-wrap: wrap;">
+		<% filmreviews.forEach(function(filmreview) { %>
+			
+			   <div class="card" style="width: 250px; margin-left: 15px; margin-right: 10px">
+					<img src="<%= filmreview.image %>" class="card-img-top" alt="" height="180px">
+					<div class="card-body">
+					    <h5 class="card-title"><%= filmreview.name %></h5>
+						<% for (var i = 0; i < filmreview.rating; i++) { %>
+							<span class="fa fa-star" style="color: orange"></span>
+						<% }; %>
+						<% for (var i = 0; i < 5 - filmreview.rating; i++) { %>
+							<span class="fa fa-star"></span>
+						<% }; %>
+					</div>
+					<ul class="list-group list-group-flush">
+					    <li class="list-group-item">Genre: horror/comedy</li>
+					    <li class="list-group-item">Reviewer: <%= filmreview.author.username %></li>
+					</ul>
+					<div class="card-body">
+					    <a href="/filmreviews/<%= filmreview._id %>" class="card-link">Read Review</a>
+					    <a href="#" class="card-link">Add Review</a>
+					</div>
+				</div>
+	    
+        <% }); %>
+	</div>
+	</div>
+
+    </div>
+
+
+    
+
+
+<%- include('../partials/footer');  %>
