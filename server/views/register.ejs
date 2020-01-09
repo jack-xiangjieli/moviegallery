@@ -1,0 +1,17 @@
+<%- include('partials/header.ejs'); %>
+
+
+<div>
+	<form action="/register" method="POST" style="width: 20%; margin: 5% auto">
+		<label style="font-size: 20px">Sign up</label>
+		<div class="form-group">
+			<input type="text" class="form-control" name="username" placeholder="username" aria-describedby="emailHelp">
+		<div class="form-group">
+			<input type="password" class="form-control" name="password" placeholder="password">
+		</div>
+		<button type="submit" class="btn btn-primary" value="signup!" style="margin: 10px 30%; width: 40%">Submit</button>
+	</form>
+</div>
+<img src="https://pngimage.net/wp-content/uploads/2018/06/footer-images-png-2.png" style="z-index: 0; height : 400px; position: fixed; bottom: 0; width: 100%;">
+
+<%- include('partials/footer.ejs'); %>

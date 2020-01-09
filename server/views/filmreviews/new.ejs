@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs');  %>
+<div class="container">
+	<h1 style="text-align: center">Create a New Film Review</h1>
+	<div class="row">
+		<div style="width: 30%; margin: 25px auto;">
+            <form action="/filmreviews" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="film name" name="name">
+				</div>
+				
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="poster url" name="image">
+				</div>
+
+				<div class="form-group">
+						<input class="form-control" type="text" placeholder="rating from 1 to 5" name="rating">
+				</div>
+				
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="review content" name="description">
+				</div>
+				
+				<div class="form-group">
+					<button class="btn btn-lg btn-primary btn-block">Submit!</button>
+				</div>
+				
+            </form>
+			<a href="/filmreviews">Go Back</a>
+		</div>
+        
+	</div>
+</div>
+
+
+<%- include('../partials/footer');  %>

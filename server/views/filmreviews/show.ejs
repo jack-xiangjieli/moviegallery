@@ -1,0 +1,69 @@
+
+<%- include('../partials/header.ejs');  %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<p class="lead">Movie Gallery</p>
+			<div class="list-group">
+				<li class="list-group-item" active>Current review</li>
+				<li class="list-group-item" >Info about the film</li>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="thumbnail">
+				<img class="img-responsive" src="<%= filmreview.image %>">
+				<div class="caption-full">
+					<div style="margin-bottom: 10px">
+					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+					<h4 class="pull-left" style="font-size: 19px; margin-right: 5px">Rating:</h4>
+					<% for (var i = 0; i < filmreview.rating; i++) { %>
+						<span class="fa fa-star" style="color: orange"></span>
+					<% }; %>
+					<% for (var i = 0; i < 5 - filmreview.rating; i++) { %>
+						<span class="fa fa-star"></span>
+					<% }; %>
+					</div>
+					<h4><%= filmreview.name %></h4>
+			
+
+					<p><%= filmreview.descripition %></p>
+					<p><em>Submitted by <%= filmreview.author.username %></em></p>
+					<% if(currentUser && filmreview.author.id.equals(currentUser._id)){ %>
+					    <a class="btn btn-xs btn-warning" href="/filmreviews/<%= filmreview._id %>/edit">Edit</a>
+					    <form id="delete-form-filmreview" action="/filmreviews/<%= filmreview._id %>?_method=DELETE" method="POST">
+						    <button class="btn btn-xs btn-danger">Delete</button>
+					    </form>
+					<% } %>
+				</div>
+			</div>
+			<div class="well">
+				<div class="text-right">
+					<a class="btn btn-success" href="/filmreviews/<%= filmreview._id %>/comments/new">Add New Comment</a>
+				</div>
+				<hr>
+				<% filmreview.comments.forEach(function(comment){ %>
+				    <div class="row">
+						<div class="col-md-12">
+							<strong><%= comment.author.username %></strong>
+							<span class="pull-right">10 days ago</span>
+							<p>
+		                        <%= comment.text %>
+                            </p>
+							<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+							    <a class="btn btn-xs btn-warning" href="/filmreviews/<%=filmreview._id %>/comments/<%= comment._id %>/edit">Edit</a>
+							    <form id="delete-form-comment" action="/filmreviews/<%=filmreview._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+								    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+							    </form>
+							<% } %>
+						</div>
+				    </div>
+                <% }) %>
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+
+<%- include('../partials/footer');  %>
