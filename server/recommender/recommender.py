@@ -13,7 +13,7 @@ from nltk.corpus import wordnet
 
 
 md = pd.read_csv('/Users/xiangjieli/Documents/MovieGallery/server/recommender/movies_metadata.csv')
-md = md[:50]
+md = md[:1000]
 md['genres'] = md['genres'].fillna('[]').apply(literal_eval).apply(lambda x: [i['name'] for i in x] if isinstance(x, list) else [])
 md = md[['imdb_id','genres','overview','tagline', 'title']]
 md['tagline'] = md['tagline'].fillna('')
@@ -30,10 +30,12 @@ imdbid = md['imdb_id']
 indices = pd.Series(md.index, index=md['title'])
 
 def get_recommendations(title):
+    if title not in indices.index:
+         title = 'Heat'
     idx = indices[title]
     sim_scores = list(enumerate(cosine_sim[idx]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:31]
+    sim_scores = sim_scores[0:10]
     movie_indices = [i[0] for i in sim_scores]
     return imdbid.iloc[movie_indices].tolist()
 

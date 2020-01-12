@@ -20,6 +20,7 @@ const commentRoutes    = require("./routes/comments"),
 	  indexRoutes      = require("./routes/index"),
 	  searchRoutes     = require("./routes/search");
 	  recommenderRoutes = require('./routes/recommender');
+	  twitterRoutes     = require('./routes/twitter_filter');
 
 seedDB();
 mongoose.set('useNewUrlParser', true);
@@ -62,6 +63,7 @@ app.use("/filmreviews", filmreviewRoutes);
 app.use("/filmreviews/:id/comments", commentRoutes);
 app.use("/", searchRoutes);
 app.use("/", recommenderRoutes);
+app.use("/", twitterRoutes);
 
 
 const PORT = process.env.PORT || 5000;

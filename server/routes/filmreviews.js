@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 });
 
 
-//create route-add new campground to datebase
+//create route-add new filmreview to datebase
 router.post("/", middleware.isLoggedIn, function(req,res) {
     var name = req.body.name;
 	var image = req.body.image;
@@ -54,7 +54,7 @@ router.get("/:id", function(req, res){
 });
 
 
-// Edit campground route
+// Edit filmreview route
 router.get("/:id/edit", middleware.checkFilmreviewOwnership, function(req, res){
 	Filmreview.findById(req.params.id, function(err, foundFilmreview){
 		res.render("filmreviews/edit", {filmreview: foundFilmreview});
@@ -62,7 +62,7 @@ router.get("/:id/edit", middleware.checkFilmreviewOwnership, function(req, res){
 });
 
 
-//Update campground route
+//Update filmreivew route
 router.put("/:id", function(req, res) {
 	
 	Filmreview.findByIdAndUpdate(req.params.id, req.body.filmreview, function(err, updatedReview){
@@ -75,7 +75,7 @@ router.put("/:id", function(req, res) {
 })
 
 
-//Destroy campground route
+//Destroy filmreview route
 router.delete("/:id", middleware.checkFilmreviewOwnership,function(req, res){
 	Filmreview.findByIdAndRemove(req.params.id, function(err){
 		if(err){

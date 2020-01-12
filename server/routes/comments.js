@@ -30,8 +30,8 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 					comment.author.id = req.user._id;
 					comment.author.username = req.user.username;
 					comment.save();
-					campground.comments.push(comment);
-					campground.save();
+					filmreview.comments.push(comment);
+					filmreview.save();
 					res.redirect('/filmreviews/' + filmreview._id);
 				}
 			})
@@ -57,7 +57,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req,res){
 		if(err){
 			res.redirect("back");
 		} else {
-			res.redirect("/cfilmreviews/" + req.params.id);
+			res.redirect("/filmreviews/" + req.params.id);
 		}
 	})
 });
