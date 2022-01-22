@@ -19,7 +19,7 @@
     "fetch": "^1.1.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.8.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
